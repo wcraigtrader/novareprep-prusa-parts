@@ -27,11 +27,13 @@ module tom_print_bed() {
 }
 
 /* n_up -- copy a child multiple times */
-module n_up( x_qty, y_qty ) {
-	x_size = TOM_BEDX / x_qty;
-	y_size = TOM_BEDY / y_qty;
-	x_start = x_size/2 - TOM_BEDX/2;
-	y_start = y_size/2 - TOM_BEDY/2;
+module n_up( x_qty, y_qty, xkern=0, ykern=0 ) {
+	x_max = TOM_BEDX - xkern;
+	y_max = TOM_BEDY - ykern;
+	x_size = x_max / x_qty;
+	y_size = y_max / y_qty;
+	x_start = x_size/2 - x_max/2;
+	y_start = y_size/2 - y_max/2;
 
 	for (x = [0 : x_qty-1] ) {
 		for (y = [0 : y_qty-1] ) {
@@ -62,16 +64,16 @@ module frame_vertex_with_foot() /* OUTPUT */ {
 	import( "models-from-jason/frame-vertex-with-foot.stl" );
 }
 
+module idler() {
+	import( "models-from-jason/idler.stl" );
+}
+
 module idler_bolzen() /* OUTPUT */ {
 	import( "models-from-jason/Idler-bolzen.stl" );
 }
 
 module idler_hebel() /* OUTPUT */ {
 	import( "models-from-jason/Idler-Hebel.stl" );
-}
-
-module idler() {
-	import( "models-from-jason/idler.stl" );
 }
 
 module j_head_and_mg_mount() {
@@ -156,7 +158,25 @@ module y_motor_bracket_2up() /* OUTPUT */ {
 	color( "green" ) translate( [-20,-05,0] ) rotate( [0,0,+188] ) y_motor_bracket();
 }
 
-// ----- Doug's plates
+// This was a thought experiment, don't need that many of this part.
+module idler_hebel_12up() {
+	n_up( 3, 2, xkern=10, ykern=4 ) 
+	rotate( [0,0,30] ) {
+		color( "green" ) translate( [+6,+10,0] ) rotate( [0,0,+45] ) idler_hebel();
+		color( "blue" )  translate( [-6,-10,0] ) rotate( [0,0,225] ) idler_hebel();
+	}
+}
+
+// This doesn't work because the idler and the mount models have problems.
+module extruder() {
+	color( "blue" ) translate( [+30,+40,0] ) rotate( a=00 ) idler_bolzen();
+	color( "cyan" ) translate( [+05,-35,0] ) rotate( a=90 ) idler_hebel();
+	color( "teal" ) translate( [+10,+00,0] ) rotate( a=00 ) j_head_and_mg_mount();
+	color( "plum" ) translate( [+05,+35,0] ) rotate( a=00 ) small_gear();
+	color( "gray" ) translate( [-31,00,0] ) rotate( a=00 ) idler();
+}
+
+// ----- Doug's plates --------------------------------------------------------
 
 module plate8 () {
 	translate ([13,2,0]) rotate ([0,0,8]) y_motor_bracket();
