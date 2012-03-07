@@ -26,34 +26,49 @@ module tom_print_bed() {
 	echo( "TOM print bed" );
 }
 
+/* n_up -- copy a child multiple times */
+module n_up( x_qty, y_qty ) {
+	x_size = TOM_BEDX / x_qty;
+	y_size = TOM_BEDY / y_qty;
+	x_start = x_size/2 - TOM_BEDX/2;
+	y_start = y_size/2 - TOM_BEDY/2;
+
+	for (x = [0 : x_qty-1] ) {
+		for (y = [0 : y_qty-1] ) {
+			translate( [x_start+x*x_size, y_start+y*y_size,0] )
+				child(0);
+		}
+	}
+}
+
 // ----- Imported Parts -------------------------------------------------------
 
 
-module bar_clamp() {
+module bar_clamp() /* OUTPUT */ {
 	import( "STL/bar-clamp.stl" );
 }
 
-module belt_clamp() {
+module belt_clamp() /* OUTPUT */ {
 	import( "STL/belt-clamp.stl" );
 }
 
-module endstop_holder() {
+module endstop() /* OUTPUT */ {
 	import( "STL/endstop-holder.stl" );
 }
 
-module frame_vertex_with_foot() {
+module frame_vertex_with_foot() /* OUTPUT */ {
 	import( "STL/frame-vertex-with-foot.stl" );
 }
 
-module gregs_y_axis_holder() {
+module y_axis_holder() /* OUTPUT */ {
 	import( "STL/gregs-y-axis-holder.stl" );
 }
 
-module idler_bolzen() {
+module idler_bolzen() /* OUTPUT */ {
 	import( "STL/Idler-bolzen.stl" );
 }
 
-module idler_hebel() {
+module idler_hebel() /* OUTPUT */ {
 	import( "STL/Idler-Hebel.stl" );
 }
 
@@ -65,15 +80,15 @@ module j_head_and_mg_mount() {
 	import( "STL/J-Head-and-MG-mount.stl" );
 }
 
-module large_gear() {
+module large_gear() /* OUTPUT */ {
 	import( "STL/large-gear.stl" );
 }
 
-module pla_coupling() {
+module pla_coupling() /* OUTPUT */ {
 	import( "STL/pla_coupling.stl" );
 }
 
-module pulley() {
+module pulley() /* OUTPUT */ {
 	import( "STL/pulley.stl" );
 }
 
@@ -93,7 +108,7 @@ module x_end_motor() {
 	import( "STL/x-end-motor.stl" );
 }
 
-module y_motor_bracket() {
+module y_motor_bracket() /* OUTPUT */ {
 	import( "STL/y-motor-bracket.stl" );
 }
 
@@ -102,6 +117,14 @@ module z_mount_frame_vertex() {
 }
 
 // ----- Part arrangements ----------------------------------------------------
+
+module bar_clamp_8up() /* OUTPUT */ {
+	n_up( 4, 2 ) bar_clamp();
+}
+
+module belt_clamp_18up() /* OUTPUT */ {
+	n_up( 3, 6 ) belt_clamp();
+}
 
 module frame_vertex_with_foot_2up() /* OUTPUT */ {
 	color( "blue"  ) translate( [+9,+10,0] ) rotate( [0,0,-5] ) frame_vertex_with_foot();
@@ -169,5 +192,4 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
-plate8();
-
+plate1();
