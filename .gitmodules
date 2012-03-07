@@ -1,0 +1,3 @@
+[submodule "models-prusa"]
+	path = prusa-models
+	url = https://github.com/prusajr/PrusaMendel.git

@@ -49,71 +49,71 @@ module n_up( x_qty, y_qty, xkern=0, ykern=0 ) {
 
 
 module bar_clamp() /* OUTPUT */ {
-	import( "models-from-jason/bar-clamp.stl" );
+	import( "jason-models/bar-clamp.stl" );
 }
 
 module belt_clamp() /* OUTPUT */ {
-	import( "models-from-jason/belt-clamp.stl" );
+	import( "jason-models/belt-clamp.stl" );
 }
 
 module endstop() /* OUTPUT */ {
-	import( "models-from-jason/endstop-holder.stl" );
+	import( "jason-models/endstop-holder.stl" );
 }
 
 module frame_vertex_with_foot() /* OUTPUT */ {
-	import( "models-from-jason/frame-vertex-with-foot.stl" );
+	import( "jason-models/frame-vertex-with-foot.stl" );
 }
 
 module idler() {
-	import( "models-from-jason/idler.stl" );
+	import( "jason-models/idler.stl" );
 }
 
 module idler_bolzen() /* OUTPUT */ {
-	import( "models-from-jason/Idler-bolzen.stl" );
+	import( "jason-models/Idler-bolzen.stl" );
 }
 
 module idler_hebel() /* OUTPUT */ {
-	import( "models-from-jason/Idler-Hebel.stl" );
+	import( "jason-models/Idler-Hebel.stl" );
 }
 
 module j_head_and_mg_mount() {
-	import( "models-from-jason/J-Head-and-MG-mount.stl" );
+	import( "jason-models/J-Head-and-MG-mount.stl" );
 }
 
 module large_gear() /* OUTPUT */ {
-	import( "models-from-jason/large-gear.stl" );
+	import( "jason-models/large-gear.stl" );
 }
 
 module pla_coupling() /* OUTPUT */ {
-	import( "models-from-jason/pla_coupling.stl" );
+	import( "jason-models/pla_coupling.stl" );
 }
 
 module pulley() /* OUTPUT */ {
-	import( "models-from-jason/pulley.stl" );
+	import( "jason-models/pulley.stl" );
 }
 
 module small_gear() {
-	import( "models-from-jason/small-gear.stl" );
+	import( "jason-models/small-gear.stl" );
 }
 
 module x_carriage() {
-	import( "models-from-jason/x-carriage.stl" );
+	import( "jason-models/x-carriage.stl" );
 }
 
 module x_end_idler() {
-	import( "models-from-jason/x-end-idler.stl" );
+	import( "jason-models/x-end-idler.stl" );
 }
 
 module x_end_motor() {
-	import( "models-from-jason/x-end-motor.stl" );
+	import( "jason-models/x-end-motor.stl" );
 }
 
 module y_axis_holder() /* OUTPUT */ {
-	import( "models-from-jason/gregs-y-axis-holder.stl" );
+	import( "jason-models/gregs-y-axis-holder.stl" );
 }
 
 module y_motor_bracket() /* OUTPUT */ {
-	import( "models-from-jason/y-motor-bracket.stl" );
+	import( "jason-models/y-motor-bracket.stl" );
 }
 
 module z_mount_frame_vertex() {
