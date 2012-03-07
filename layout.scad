@@ -35,8 +35,10 @@ module n_up( x_qty, y_qty ) {
 
 	for (x = [0 : x_qty-1] ) {
 		for (y = [0 : y_qty-1] ) {
-			translate( [x_start+x*x_size, y_start+y*y_size,0] )
-				child(0);
+			for (i = [0 : $children-1]) {
+				translate( [x_start+x*x_size, y_start+y*y_size,0] )
+					child(i);
+			}
 		}
 	}
 }
@@ -58,10 +60,6 @@ module endstop() /* OUTPUT */ {
 
 module frame_vertex_with_foot() /* OUTPUT */ {
 	import( "models-from-jason/frame-vertex-with-foot.stl" );
-}
-
-module y_axis_holder() /* OUTPUT */ {
-	import( "models-from-jason/gregs-y-axis-holder.stl" );
 }
 
 module idler_bolzen() /* OUTPUT */ {
@@ -108,6 +106,10 @@ module x_end_motor() {
 	import( "models-from-jason/x-end-motor.stl" );
 }
 
+module y_axis_holder() /* OUTPUT */ {
+	import( "models-from-jason/gregs-y-axis-holder.stl" );
+}
+
 module y_motor_bracket() /* OUTPUT */ {
 	import( "models-from-jason/y-motor-bracket.stl" );
 }
@@ -126,6 +128,24 @@ module belt_clamp_18up() /* OUTPUT */ {
 	n_up( 3, 6 ) belt_clamp();
 }
 
+module y_axis_holder_6up() /* OUTPUT */ {
+	n_up( 3, 2 ) y_axis_holder();
+}
+
+module y_axis_pulley_12up() /* OUTPUT */ {
+	n_up( 3, 4 ) pulley();
+}
+
+module z_axis_coupler_9up() /* OUTPUT */ {
+	n_up( 3, 3 ) pla_coupling();
+}
+
+module endstop_8up() /* OUTPUT */ {
+	n_up( 4,1 ) { 
+		translate( [0,+15,0] ) rotate( [0,0,+90] ) endstop();
+		translate( [0,-15,0] ) rotate( [0,0,-90] ) endstop();
+	}
+}
 module frame_vertex_with_foot_2up() /* OUTPUT */ {
 	color( "blue"  ) translate( [+9,+10,0] ) rotate( [0,0,-5] ) frame_vertex_with_foot();
 	color( "green" ) translate( [-9,-10,0] ) rotate( [0,0,+175] ) frame_vertex_with_foot();
