@@ -1,0 +1,5 @@
+Printed parts and plates for the NovaRepRap group's Prusa build.
+
+To use, install OpenSCAD, and then run "make".
+
+To clean up, run "make clean".
