@@ -143,7 +143,7 @@ module plate8 () {
 	translate ([-13,-2,0]) rotate ([0,0,188]) y_motor_bracket();
 }
 
-module plate7() {
+module plate7() /* OUTPUT */ {
 	translate ([-12,33,0]) x_end_idler();
 	translate ([8,-22,0]) rotate ([0,0,90]) x_end_motor();
 }
@@ -192,4 +192,3 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
-plate1();
