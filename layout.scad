@@ -45,71 +45,71 @@ module n_up( x_qty, y_qty ) {
 
 
 module bar_clamp() /* OUTPUT */ {
-	import( "STL/bar-clamp.stl" );
+	import( "models-from-jason/bar-clamp.stl" );
 }
 
 module belt_clamp() /* OUTPUT */ {
-	import( "STL/belt-clamp.stl" );
+	import( "models-from-jason/belt-clamp.stl" );
 }
 
 module endstop() /* OUTPUT */ {
-	import( "STL/endstop-holder.stl" );
+	import( "models-from-jason/endstop-holder.stl" );
 }
 
 module frame_vertex_with_foot() /* OUTPUT */ {
-	import( "STL/frame-vertex-with-foot.stl" );
+	import( "models-from-jason/frame-vertex-with-foot.stl" );
 }
 
 module y_axis_holder() /* OUTPUT */ {
-	import( "STL/gregs-y-axis-holder.stl" );
+	import( "models-from-jason/gregs-y-axis-holder.stl" );
 }
 
 module idler_bolzen() /* OUTPUT */ {
-	import( "STL/Idler-bolzen.stl" );
+	import( "models-from-jason/Idler-bolzen.stl" );
 }
 
 module idler_hebel() /* OUTPUT */ {
-	import( "STL/Idler-Hebel.stl" );
+	import( "models-from-jason/Idler-Hebel.stl" );
 }
 
 module idler() {
-	import( "STL/idler.stl" );
+	import( "models-from-jason/idler.stl" );
 }
 
 module j_head_and_mg_mount() {
-	import( "STL/J-Head-and-MG-mount.stl" );
+	import( "models-from-jason/J-Head-and-MG-mount.stl" );
 }
 
 module large_gear() /* OUTPUT */ {
-	import( "STL/large-gear.stl" );
+	import( "models-from-jason/large-gear.stl" );
 }
 
 module pla_coupling() /* OUTPUT */ {
-	import( "STL/pla_coupling.stl" );
+	import( "models-from-jason/pla_coupling.stl" );
 }
 
 module pulley() /* OUTPUT */ {
-	import( "STL/pulley.stl" );
+	import( "models-from-jason/pulley.stl" );
 }
 
 module small_gear() {
-	import( "STL/small-gear.stl" );
+	import( "models-from-jason/small-gear.stl" );
 }
 
 module x_carriage() {
-	import( "STL/x-carriage.stl" );
+	import( "models-from-jason/x-carriage.stl" );
 }
 
 module x_end_idler() {
-	import( "STL/x-end-idler.stl" );
+	import( "models-from-jason/x-end-idler.stl" );
 }
 
 module x_end_motor() {
-	import( "STL/x-end-motor.stl" );
+	import( "models-from-jason/x-end-motor.stl" );
 }
 
 module y_motor_bracket() /* OUTPUT */ {
-	import( "STL/y-motor-bracket.stl" );
+	import( "models-from-jason/y-motor-bracket.stl" );
 }
 
 module z_mount_frame_vertex() {
