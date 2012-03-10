@@ -15,7 +15,7 @@ all:	${TARGETS}
 include $(wildcard *.deps)
 
 %.scad:
-	echo -n 'use <${LIBRARY}>\n$(*F)();' > $@
+	echo -n 'use <${LIBRARY}>\n!$(*F)();' > $@
 
 ${BUILD}/%.stl:	%.scad
 	@mkdir -p ${BUILD}
