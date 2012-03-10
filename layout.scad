@@ -45,6 +45,15 @@ module n_up( x_qty, y_qty, xkern=0, ykern=0 ) {
 	}
 }
 
+module place( translation=[0,0,0], angle=0, hue="gold" ) {
+	for (i = [0 : $children-1]) {
+		color( hue ) 
+			translate( translation ) 
+				rotate( a=angle ) 
+					child(i);
+	}
+}
+
 // ----- Imported Parts -------------------------------------------------------
 
 
@@ -65,7 +74,7 @@ module frame_vertex_with_foot() /* OUTPUT */ {
 }
 
 module idler() {
-	import( "jason-models/idler.stl" );
+	import( "jason-models/idler-fixed.stl" );
 }
 
 module idler_bolzen() /* OUTPUT */ {
@@ -77,7 +86,7 @@ module idler_hebel() /* OUTPUT */ {
 }
 
 module j_head_and_mg_mount() {
-	import( "jason-models/J-Head-and-MG-mount.stl" );
+	import( "jason-models/J-Head-and-MG-mount-fixed.stl" );
 }
 
 module large_gear() /* OUTPUT */ {
@@ -93,19 +102,19 @@ module pulley() /* OUTPUT */ {
 }
 
 module small_gear() {
-	import( "jason-models/small-gear.stl" );
+	import( "jason-models/small-gear-fixed.stl" );
 }
 
 module x_carriage() {
-	import( "jason-models/x-carriage.stl" );
+	import( "jason-models/x-carriage-fixed.stl" );
 }
 
 module x_end_idler() {
-	import( "jason-models/x-end-idler.stl" );
+	import( "jason-models/x-end-idler-fixed.stl" );
 }
 
 module x_end_motor() {
-	import( "jason-models/x-end-motor.stl" );
+	import( "jason-models/x-end-motor-fixed.stl" );
 }
 
 module y_axis_holder() /* OUTPUT */ {
@@ -117,7 +126,7 @@ module y_motor_bracket() /* OUTPUT */ {
 }
 
 module z_mount_frame_vertex() {
-	import( "STL/z-mount-frame-vertex.stl" );
+	import( "STL/z-mount-frame-vertex-fixed.stl" );
 }
 
 // ----- Part arrangements ----------------------------------------------------
@@ -144,36 +153,36 @@ module z_axis_coupler_9up() /* OUTPUT */ {
 
 module endstop_8up() /* OUTPUT */ {
 	n_up( 4,1 ) { 
-		translate( [0,+15,0] ) rotate( [0,0,+90] ) endstop();
-		translate( [0,-15,0] ) rotate( [0,0,-90] ) endstop();
+		place( [0,+15,0], +90, "plum" ) endstop();
+		place( [0,-15,0], -90, "teal" ) endstop();
 	}
 }
 module frame_vertex_with_foot_2up() /* OUTPUT */ {
-	color( "blue"  ) translate( [+9,+10,0] ) rotate( [0,0,-5] ) frame_vertex_with_foot();
-	color( "green" ) translate( [-9,-10,0] ) rotate( [0,0,+175] ) frame_vertex_with_foot();
+	place( [+9,+10,0], -5,   "blue" ) frame_vertex_with_foot();
+	place( [-9,-10,0], +175, "plum" ) frame_vertex_with_foot();
 }
 
 module y_motor_bracket_2up() /* OUTPUT */ {
-	color( "blue"  ) translate( [+20,+05,0] ) rotate( [0,0,+008] ) y_motor_bracket();
-	color( "green" ) translate( [-20,-05,0] ) rotate( [0,0,+188] ) y_motor_bracket();
+	place( [+20,+5,0], +008, "plum" ) y_motor_bracket();
+	place( [-20,-5,0], +188, "teal" ) y_motor_bracket();
 }
 
 // This was a thought experiment, don't need that many of this part.
 module idler_hebel_12up() {
 	n_up( 3, 2, xkern=10, ykern=4 ) 
 	rotate( [0,0,30] ) {
-		color( "green" ) translate( [+6,+10,0] ) rotate( [0,0,+45] ) idler_hebel();
-		color( "blue" )  translate( [-6,-10,0] ) rotate( [0,0,225] ) idler_hebel();
+		place( [+6,+10,0], 045, "plum" ) idler_hebel();
+		place( [-6,-10,0], 225, "teal" ) idler_hebel();
 	}
 }
 
 // This doesn't work because the idler and the mount models have problems.
 module extruder() {
-	color( "blue" ) translate( [+30,+40,0] ) rotate( a=00 ) idler_bolzen();
-	color( "cyan" ) translate( [+05,-35,0] ) rotate( a=90 ) idler_hebel();
-	color( "teal" ) translate( [+10,+00,0] ) rotate( a=00 ) j_head_and_mg_mount();
-	color( "plum" ) translate( [+05,+35,0] ) rotate( a=00 ) small_gear();
-	color( "gray" ) translate( [-31,00,0] ) rotate( a=00 ) idler();
+	place( [+30,+40,0], 00, "blue" ) idler_bolzen();
+	place( [+05,-35,0], 90, "cyan" ) idler_hebel();
+	place( [+10,+00,0], 00, "teal" ) j_head_and_mg_mount();
+	place( [+05,+35,0], 00, "plum" ) small_gear();
+	place( [-31,+00,0], 00, "gray" ) idler();
 }
 
 // ----- Doug's plates --------------------------------------------------------
@@ -232,3 +241,4 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
+idler_hebel_12up();
