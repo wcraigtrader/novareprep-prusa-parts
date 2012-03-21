@@ -104,7 +104,7 @@ module small_gear() /* OUTPUT */ {
 	import( "jason-models/small-gear-fixed.stl" );
 }
 
-module x_carriage() {
+module x_carriage() /* OUTPUT */ {
 	import( "jason-models/x-carriage-fixed.stl" );
 }
 
@@ -257,4 +257,4 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
-n_up( 4, 3, 0, 0 ) rotate( a=90 ) pla_coupling();
+extruder();
