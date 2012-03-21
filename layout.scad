@@ -9,8 +9,8 @@
 
 // ----- Measurements ---------------------------------------------------------
 
-TOM_BEDX = 100;
-TOM_BEDY = 100;
+TOM_BEDX = 105;
+TOM_BEDY = 105;
 
 // ----- Utilities ------------------------------------------------------------
 
@@ -23,11 +23,10 @@ module tom_print_bed() {
 			cube( [ TOM_BEDX, TOM_BEDY, LINE ], center=true );
 			cube( [ TOM_BEDX-2*LINE, TOM_BEDY-2*LINE, 2*LINE ], center=true );
 		}
-	echo( "TOM print bed" );
 }
 
 /* n_up -- copy a child multiple times */
-module n_up( x_qty, y_qty, xkern=0, ykern=0 ) {
+module n_up( x_qty=1, y_qty=1, xkern=0, ykern=0 ) {
 	x_max = TOM_BEDX - xkern;
 	y_max = TOM_BEDY - ykern;
 	x_size = x_max / x_qty;
@@ -73,7 +72,7 @@ module frame_vertex_with_foot() /* OUTPUT */ {
 	import( "jason-models/frame-vertex-with-foot.stl" );
 }
 
-module idler() {
+module idler() /* OUTPUT */ {
 	import( "jason-models/idler-fixed.stl" );
 }
 
@@ -101,7 +100,7 @@ module pulley() /* OUTPUT */ {
 	import( "jason-models/pulley.stl" );
 }
 
-module small_gear() {
+module small_gear() /* OUTPUT */ {
 	import( "jason-models/small-gear-fixed.stl" );
 }
 
@@ -109,7 +108,7 @@ module x_carriage() {
 	import( "jason-models/x-carriage-fixed.stl" );
 }
 
-module x_end_idler() {
+module x_end_idler() /* OUTPUT */ {
 	import( "jason-models/x-end-idler-fixed.stl" );
 }
 
@@ -125,15 +124,35 @@ module y_motor_bracket() /* OUTPUT */ {
 	import( "jason-models/y-motor-bracket.stl" );
 }
 
-module z_mount_frame_vertex() {
-	import( "STL/z-mount-frame-vertex-fixed.stl" );
+module z_mount_frame_vertex() /* OUTPUT */ {
+	import( "jason-models/z-mount-frame-vertex-fixed.stl" );
 }
 
 // ----- Part arrangements ----------------------------------------------------
 
+// ----- Frame parts ----------------------------------------------------------
+
 module bar_clamp_8up() /* OUTPUT */ {
 	n_up( 4, 2 ) bar_clamp();
 }
+
+module frame_vertex_with_foot_2up() /* OUTPUT */ {
+	place( [+9,+10,0], -5,   "blue" ) frame_vertex_with_foot();
+	place( [-9,-10,0], +175, "plum" ) frame_vertex_with_foot();
+}
+
+module y_motor_bracket_2up() /* OUTPUT */ {
+	place( [+20,+5,0], +008, "plum" ) y_motor_bracket();
+	place( [-20,-5,0], +188, "teal" ) y_motor_bracket();
+}
+
+// ----- Z-Axis parts ---------------------------------------------------------
+
+module z_axis_coupler_12up() /* OUTPUT */ {
+	n_up( 4, 3, 0, 0 ) rotate( a=90 ) pla_coupling();
+}
+
+// ----- Y-Axis parts ---------------------------------------------------------
 
 module belt_clamp_18up() /* OUTPUT */ {
 	n_up( 3, 6 ) belt_clamp();
@@ -147,28 +166,16 @@ module y_axis_pulley_12up() /* OUTPUT */ {
 	n_up( 3, 4 ) pulley();
 }
 
-module z_axis_coupler_9up() /* OUTPUT */ {
-	n_up( 3, 3 ) pla_coupling();
-}
+// ----- X-Axis parts ---------------------------------------------------------
 
-module endstop_8up() /* OUTPUT */ {
-	n_up( 4,1 ) { 
-		place( [0,+15,0], +90, "plum" ) endstop();
-		place( [0,-15,0], -90, "teal" ) endstop();
-	}
-}
-module frame_vertex_with_foot_2up() /* OUTPUT */ {
-	place( [+9,+10,0], -5,   "blue" ) frame_vertex_with_foot();
-	place( [-9,-10,0], +175, "plum" ) frame_vertex_with_foot();
-}
+// ----- Extruder parts -------------------------------------------------------
 
-module y_motor_bracket_2up() /* OUTPUT */ {
-	place( [+20,+5,0], +008, "plum" ) y_motor_bracket();
-	place( [-20,-5,0], +188, "teal" ) y_motor_bracket();
+module idler_6up() /* OUTPUT */ {
+	n_up( 3,2, 5 ) idler();
 }
 
 // This was a thought experiment, don't need that many of this part.
-module idler_hebel_12up() {
+module idler_hebel_12up() /* OUTPUT */ {
 	n_up( 3, 2, xkern=10, ykern=4 ) 
 	rotate( [0,0,30] ) {
 		place( [+6,+10,0], 045, "plum" ) idler_hebel();
@@ -183,6 +190,15 @@ module extruder() {
 	place( [+10,+00,0], 00, "teal" ) j_head_and_mg_mount();
 	place( [+05,+35,0], 00, "plum" ) small_gear();
 	place( [-31,+00,0], 00, "gray" ) idler();
+}
+
+// ----- Electronics parts ----------------------------------------------------
+
+module endstop_8up() /* OUTPUT */ {
+	n_up( 4,1 ) { 
+		place( [0,+15,0], +90, "plum" ) endstop();
+		place( [0,-15,0], -90, "teal" ) endstop();
+	}
 }
 
 // ----- Doug's plates --------------------------------------------------------
@@ -241,4 +257,4 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
-idler_hebel_12up();
+n_up( 4, 3, 0, 0 ) rotate( a=90 ) pla_coupling();
