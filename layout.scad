@@ -10,7 +10,7 @@
 // ----- Measurements ---------------------------------------------------------
 
 TOM_BEDX = 105;
-TOM_BEDY = 105;
+TOM_BEDY = 120;
 
 // ----- Utilities ------------------------------------------------------------
 
@@ -174,6 +174,11 @@ module idler_6up() /* OUTPUT */ {
 	n_up( 3,2, 5 ) idler();
 }
 
+module large_gear_2up() /* OUTPUT */ {
+	place( [-19.5,-26.5,0], -1, "plum" ) large_gear();
+	place( [+19.5,+26.5,0], -1, "blue" ) large_gear();
+}
+
 // This was a thought experiment, don't need that many of this part.
 module idler_hebel_12up() /* OUTPUT */ {
 	n_up( 3, 2, xkern=10, ykern=4 ) 
@@ -257,4 +262,5 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
-j_head_and_mg_mount();
+large_gear_2up();
+
