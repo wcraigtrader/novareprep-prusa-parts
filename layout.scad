@@ -85,7 +85,7 @@ module idler_hebel() /* OUTPUT */ {
 }
 
 module j_head_and_mg_mount() {
-	import( "jason-models/J-Head-and-MG-mount-fixed.stl" );
+	import( "jason-models/J-Head-and-MG-mount-fixed2.stl" );
 }
 
 module large_gear() /* OUTPUT */ {
@@ -104,8 +104,8 @@ module small_gear() /* OUTPUT */ {
 	import( "jason-models/small-gear-fixed.stl" );
 }
 
-module x_carriage() /* OUTPUT */ {
-	import( "jason-models/x-carriage-fixed.stl" );
+module x_carriage() {
+	import( "jason-models/x-carriage-fixed2.stl" );
 }
 
 module x_end_idler() /* OUTPUT */ {
@@ -113,7 +113,7 @@ module x_end_idler() /* OUTPUT */ {
 }
 
 module x_end_motor() {
-	import( "jason-models/x-end-motor-fixed.stl" );
+	import( "jason-models/x-end-motor-fixed2.stl" );
 }
 
 module y_axis_holder() /* OUTPUT */ {
@@ -257,4 +257,4 @@ module plate1 () {
 // ----- Working set ----------------------------------------------------------
 
 tom_print_bed();
-extruder();
+j_head_and_mg_mount();
